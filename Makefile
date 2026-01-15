@@ -42,6 +42,8 @@ client-cert: intermediate-ca
 
 trust-bundle: root-ca intermediate-ca
 	@echo "Generating Trust Bundle..."
+	@test -f root/root.crt || (echo "Error: root/root.crt not found" && exit 1)
+	@test -f intermediate/intermediate.crt || (echo "Error: intermediate/intermediate.crt not found" && exit 1)
 	cat root/root.crt intermediate/intermediate.crt > foundation-trust-bundle.pem
 	@echo "Trust bundle generated: foundation-trust-bundle.pem"
 

@@ -1,10 +1,15 @@
-# PKI artifacts - private keys should never be committed
+# PKI directories containing private keys - never commit
 root/
 intermediate/
 server/
 client/
-foundation-trust-bundle.pem
+
+# Private keys - never commit
 *.key
-*.crt
+
+# Certificate signing requests and serial files
 *.csr
 *.srl
+
+# Note: foundation-trust-bundle.pem contains only public certificates
+# and is safe to commit if needed for distribution

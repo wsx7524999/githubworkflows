@@ -4,7 +4,7 @@ Complete Public Key Infrastructure automation for certificate management and tru
 
 ## Certificate Structure
 
-- **Root CA:** `root/root.crt` (offline‑trusted)
+- **Root CA:** `root/root.crt` (offline-trusted)
   - Private Key: `root/root.key`
   - Self-signed root certificate authority
   - Validity: 10 years
