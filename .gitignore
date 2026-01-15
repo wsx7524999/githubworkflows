@@ -8,4 +8,3 @@ foundation-trust-bundle.pem
 *.crt
 *.csr
 *.srl
-metadata.json

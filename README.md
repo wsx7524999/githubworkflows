@@ -28,9 +28,6 @@ Complete Public Key Infrastructure automation for certificate management and tru
   - Combined Root + Intermediate CA certificates
   - Use as trust anchor for service-to-service communication
 
-- **Metadata:** `metadata.json`
-  - Certificate inventory and tracking information
-
 ## Usage
 
 ### Generate All PKI Artifacts
@@ -96,7 +93,6 @@ GitHub → Actions → Foundation PKI Automation → Run workflow
 **Automatic triggers:**
 - Changes to `Makefile`
 - Changes to PKI directories (`root/`, `intermediate/`, `server/`, `client/`)
-- Changes to `metadata.json`
 - Changes to workflow file itself
 
 ## Security Notes
@@ -131,7 +127,6 @@ foundation-pki/
 │   ├── client.crt                (Certificate)
 │   └── client.csr                (Signing Request)
 ├── foundation-trust-bundle.pem   (Combined CA Certificates)
-├── metadata.json                 (Inventory)
 ├── Makefile                      (Build Automation)
 ├── README.md                      (This file)
 └── .github/

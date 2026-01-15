@@ -9,7 +9,6 @@ on:
       - "intermediate/**"
       - "server/**"
       - "client/**"
-      - "metadata.json"
       - ".github/workflows/pki.yml"
 
 jobs:
@@ -30,10 +29,6 @@ jobs:
           make clean || true
           make all
 
-      - name: Generate Trust Bundle
-        run: |
-          cat root/root.crt intermediate/intermediate.crt > foundation-trust-bundle.pem
-
       - name: Upload PKI Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -43,5 +38,4 @@ jobs:
             intermediate/
             server/
             client/
-            metadata.json
             foundation-trust-bundle.pem
