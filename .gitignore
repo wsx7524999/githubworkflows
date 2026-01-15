@@ -1,0 +1,11 @@
+# PKI artifacts - private keys should never be committed
+root/
+intermediate/
+server/
+client/
+foundation-trust-bundle.pem
+*.key
+*.crt
+*.csr
+*.srl
+metadata.json

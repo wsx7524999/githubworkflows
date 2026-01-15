@@ -1,0 +1,47 @@
+name: Foundation PKI Automation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "Makefile"
+      - "root/**"
+      - "intermediate/**"
+      - "server/**"
+      - "client/**"
+      - "metadata.json"
+      - ".github/workflows/pki.yml"
+
+jobs:
+  build-pki:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install OpenSSL and Make
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssl make
+
+      - name: Rebuild PKI
+        run: |
+          make clean || true
+          make all
+
+      - name: Generate Trust Bundle
+        run: |
+          cat root/root.crt intermediate/intermediate.crt > foundation-trust-bundle.pem
+
+      - name: Upload PKI Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundation-pki
+          path: |
+            root/
+            intermediate/
+            server/
+            client/
+            metadata.json
+            foundation-trust-bundle.pem
