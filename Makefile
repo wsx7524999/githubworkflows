@@ -16,8 +16,15 @@ intermediate-ca: root-ca
 	openssl genrsa -out intermediate/intermediate.key 2048
 	openssl req -new -key intermediate/intermediate.key -out intermediate/intermediate.csr \
 		-subj "/CN=Foundation Intermediate CA"
+	@echo "[ v3_intermediate_ca ]" > intermediate/ca.ext
+	@echo "subjectKeyIdentifier = hash" >> intermediate/ca.ext
+	@echo "authorityKeyIdentifier = keyid:always,issuer" >> intermediate/ca.ext
+	@echo "basicConstraints = critical, CA:true, pathlen:0" >> intermediate/ca.ext
+	@echo "keyUsage = critical, digitalSignature, cRLSign, keyCertSign" >> intermediate/ca.ext
 	openssl x509 -req -in intermediate/intermediate.csr -CA root/root.crt -CAkey root/root.key \
-		-CAcreateserial -out intermediate/intermediate.crt -days 1825
+		-CAcreateserial -out intermediate/intermediate.crt -days 1825 \
+		-extfile intermediate/ca.ext -extensions v3_intermediate_ca
+	@rm -f intermediate/ca.ext
 	@echo "Intermediate CA generated successfully"
 
 server-cert: intermediate-ca
