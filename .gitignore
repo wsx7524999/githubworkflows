@@ -1,0 +1,27 @@
+# PKI Private Keys - NEVER COMMIT THESE
+*.key
+
+# Certificate Directories (contain sensitive private keys)
+root/
+intermediate/
+server/
+client/
+
+# Allow trust bundle (public certificates only - safe to distribute)
+!foundation-trust-bundle.pem
+
+# OpenSSL generated files
+*.csr
+*.srl
+*.ext
+
+# Metadata and temporary files
+metadata.json
+
+# Editor and system files
+.DS_Store
+.vscode/
+*.swp
+*.swo
+*~
+.idea/
